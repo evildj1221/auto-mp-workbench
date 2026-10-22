@@ -1,0 +1,2 @@
+[INFO] Step 1 · 2026-08-29
+⚠️  D:\Trae work contents\创作工作台\data\candidates\2026-08-29_r2.json 已存在，跳过生成（用 --force 覆盖重跑）

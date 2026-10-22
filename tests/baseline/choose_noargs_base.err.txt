@@ -1,0 +1,3 @@
+usage: cat_shop.py choose [-h] --date DATE --choice CHOICE [--note NOTE]
+                          [--round ROUND]
+cat_shop.py choose: error: the following arguments are required: --date, --choice

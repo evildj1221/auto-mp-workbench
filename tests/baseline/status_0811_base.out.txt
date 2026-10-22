@@ -1,0 +1,21 @@
+[INFO] 工作流状态 · 2026-08-11
+
+  ✅ Step 1 · 选题生成
+  ✅ Step 2 · 评分
+  ✅ Step 3 · 飞书推送
+  ✅ Step 3.5 · 用户评论
+  ✅ Step 3.6 · 反馈分析
+  ✅ Step 3.7 · 用户决策
+  ✅ Step 4 · 写稿 v1
+  ⬜ Step 4 · 写稿 v2
+  ✅ Step 4.5 · 飞书云文档同步
+  ✅ Step 5 · HTML 排版
+  ✅ Step 6 · 飞书草稿推送
+  ✅ Step 7 · 反馈学习
+
+  💡 未完成步骤请按需执行
+     查看完整命令：python cat_shop.py full --date 2026-08-11
+
+  标题：四年后的你，不会怪你走错路
+  字数：1041
+  飞书文档：https://my.feishu.cn/docx/LQWZd5IbioXllMx5REecBwKvnSc

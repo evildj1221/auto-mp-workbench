@@ -1,0 +1,71 @@
+{
+  "risk_level": "blocked",
+  "should_block": true,
+  "block_reason": "硬红线命中 3 条（critical）",
+  "total_score": 44,
+  "hit_counts": {
+    "critical": 3,
+    "high": 1,
+    "medium": 1,
+    "low": 1
+  },
+  "hits": [
+    {
+      "rule_id": "financial_advice",
+      "level": "critical",
+      "matched_text": "买 XX 稳赚",
+      "message": "❌ 触红线：财务具体方案",
+      "position": 16,
+      "context_snippet": "综上所述，你应该明白，同龄人已经买基金稳赚了，不转不是中国人。"
+    },
+    {
+      "rule_id": "clickbait",
+      "level": "critical",
+      "matched_text": "不转不是",
+      "message": "❌ 触红线：标题党",
+      "position": 23,
+      "context_snippet": "述，你应该明白，同龄人已经买基金稳赚了，不转不是中国人。"
+    },
+    {
+      "rule_id": "clickbait",
+      "level": "critical",
+      "matched_text": "不转不是中国人",
+      "message": "❌ 触红线：标题党",
+      "position": 23,
+      "context_snippet": "述，你应该明白，同龄人已经买基金稳赚了，不转不是中国人。"
+    },
+    {
+      "rule_id": "anxiety_talk",
+      "level": "high",
+      "matched_text": "同龄人已经",
+      "message": "🟧 调性禁区：焦虑话术",
+      "position": 11,
+      "context_snippet": "综上所述，你应该明白，同龄人已经买基金稳赚了，不转不是中国人。"
+    },
+    {
+      "rule_id": "should_dare",
+      "level": "medium",
+      "matched_text": "你应该",
+      "message": "🟨 调性禁区：说教/命令语气（温柔调性 4 词之反）",
+      "position": 5,
+      "context_snippet": "综上所述，你应该明白，同龄人已经买基金稳赚了，不转不是中"
+    },
+    {
+      "rule_id": "cliche",
+      "level": "low",
+      "matched_text": "综上所述",
+      "message": "🟦 套话：AI 味儿过重",
+      "position": 0,
+      "context_snippet": "综上所述，你应该明白，同龄人已经买基金稳赚了，不"
+    }
+  ],
+  "limits": {
+    "medium": 3,
+    "low": 3,
+    "total": 5
+  },
+  "step": "cli",
+  "date": "2026-08-29",
+  "file": "unknown",
+  "ts": "2026-08-29T12:53:20"
+}

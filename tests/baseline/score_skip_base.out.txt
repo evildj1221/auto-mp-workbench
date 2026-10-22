@@ -1,0 +1,2 @@
+[INFO] Step 2 · 2026-08-29 · r2 · runs=1 workers=5
+⚠️  D:\Trae work contents\创作工作台\data\drafts\2026-08-29_r2_top5.json 已存在，跳过评分（用 --force 覆盖重跑（且用户已决策，重跑会让 user_choice 失配！））

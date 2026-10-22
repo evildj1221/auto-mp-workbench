@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/* ============================================================
+   创作工作台 · 设计令牌（天光云影 v3 · 新海诚式天光 × 毛玻璃 × iOS 灵动）
+   延承旧版天光云影 v2 视觉规范，组件一律引用变量，不写死颜色。
+   ============================================================ */
+:root {
+  /* 天光云影渐变底：晨蓝 → 午后天光 → 黄昏暖金 */
+  --sky-from: #8ea8e8;
+  --sky-mid: #c3d4f2;
+  --sky-dusk: #f3d9b8;
+  --sky-glow: #ffe9c9;
+
+  /* 玻璃面板（blur 18→10：Windows Chromium 上 backdrop-filter 是绘制大户，
+     全站卡片毛玻璃叠加轮询重渲染时直接掉帧；10px 视觉差异极小） */
+  --glass-bg: rgba(255, 255, 255, 0.58);
+  --glass-bg-strong: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-shadow: 0 8px 32px rgba(90, 110, 160, 0.16);
+  --glass-blur: 10px;
+
+  /* 墨色体系（正文/次级/弱化） */
+  --ink-1: #2c3a52;
+  --ink-2: #5a6a85;
+  --ink-3: #8b98ad;
+
+  /* 语义色（状态灯 / 标签） */
+  --c-run: #4a90d9;
+  --c-wait: #e0a03c;
+  --c-ok: #4caf88;
+  --c-err: #d96a5a;
+
+  /* 主题强调（深蓝墨 + 金句蓝，承旧版金句深蓝加粗） */
+  --accent: #3b5ba5;
+  --accent-soft: rgba(59, 91, 165, 0.12);
+
+  /* 灵动圆角与动效 */
+  --r-lg: 22px;
+  --r-md: 16px;
+  --r-sm: 10px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink-1);
+  font-family: "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 500px at 85% -5%, rgba(255, 233, 201, 0.55), transparent 60%),
+    radial-gradient(900px 420px at -10% 110%, rgba(243, 217, 184, 0.5), transparent 55%),
+    linear-gradient(165deg, var(--sky-from) 0%, var(--sky-mid) 45%, var(--sky-dusk) 100%);
+  /* 不用 background-attachment: fixed：滚动即触发全屏重绘 */
+}
+
+/* ===== 玻璃卡片 ===== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow);
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ===== 按钮（iOS 灵动：圆角胶囊 + 微弹动效） ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 999px;
+  font-size: 14px; font-weight: 500; line-height: 1.4;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong); color: var(--ink-1);
+  cursor: pointer; user-select: none;
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), background 0.18s var(--ease);
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(90, 110, 160, 0.22); }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+.btn-primary {
+  background: linear-gradient(135deg, #4a6fbf, #3b5ba5);
+  border-color: transparent; color: #fff;
+}
+.btn-gold {
+  background: linear-gradient(135deg, #f0b95c, #e0a03c);
+  border-color: transparent; color: #5c3d00;
+}
+.btn-danger { background: rgba(217, 106, 90, 0.12); color: var(--c-err); border-color: rgba(217, 106, 90, 0.3); }
+.btn-sm { padding: 4px 12px; font-size: 12.5px; }
+
+/* ===== 标签 pill ===== */
+.pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 500;
+  background: rgba(255, 255, 255, 0.6); color: var(--ink-2);
+  border: 1px solid var(--glass-border);
+}
+.pill-run  { background: rgba(74, 144, 217, 0.14);  color: var(--c-run);  border-color: rgba(74, 144, 217, 0.3); }
+.pill-wait { background: rgba(224, 160, 60, 0.16);  color: #9c6a14;     border-color: rgba(224, 160, 60, 0.35); }
+.pill-ok   { background: rgba(76, 175, 136, 0.14);  color: #2c7d5d;     border-color: rgba(76, 175, 136, 0.3); }
+.pill-err  { background: rgba(217, 106, 90, 0.14);  color: var(--c-err); border-color: rgba(217, 106, 90, 0.3); }
+
+/* ===== 状态灯 ===== */
+.lamp { width: 9px; height: 9px; border-radius: 999px; background: var(--ink-3); flex: none; }
+.lamp.run { background: var(--c-run); box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.2); animation: lamp-pulse 1.6s infinite; }
+.lamp.wait { background: var(--c-wait); box-shadow: 0 0 0 3px rgba(224, 160, 60, 0.22); animation: lamp-pulse 1.6s infinite; }
+.lamp.ok { background: var(--c-ok); }
+.lamp.err { background: var(--c-err); }
+@keyframes lamp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+/* ===== 输入控件 ===== */
+.input, .select, .textarea {
+  width: 100%; box-sizing: border-box;
+  padding: 9px 14px; border-radius: var(--r-sm);
+  border: 1px solid rgba(138, 152, 173, 0.35);
+  background: rgba(255, 255, 255, 0.72); color: var(--ink-1);
+  font-size: 14px; outline: none;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.textarea { resize: vertical; line-height: 1.7; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+
+/* ===== 布局工具 ===== */
+.card-pad { padding: 18px 20px; }
+.section-title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--ink-1); }
+.section-title::before { content: ""; width: 3.5px; height: 15px; border-radius: 2px; background: linear-gradient(180deg, var(--accent), var(--c-run)); }
+.muted { color: var(--ink-3); font-size: 12.5px; }
+.ink2 { color: var(--ink-2); }
+
+/* 流入动画（页面切换 / 卡片出现） */
+.rise { animation: rise 0.4s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* 时间线 */
+.tl-item { position: relative; padding: 0 0 14px 26px; }
+.tl-item::before {
+  content: ""; position: absolute; left: 7px; top: 6px;
+  width: 7px; height: 7px; border-radius: 999px;
+  background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.tl-item::after {
+  content: ""; position: absolute; left: 10px; top: 16px; bottom: 0;
+  width: 1.5px; background: rgba(59, 91, 165, 0.16);
+}
+.tl-item:last-child::after { display: none; }
+
+/* 手机预览壳 */
+.phone-shell {
+  width: 375px; max-width: 100%; height: 640px;
+  border-radius: 36px; padding: 10px;
+  background: linear-gradient(160deg, #2c3a52, #1d2a40);
+  box-shadow: 0 18px 48px rgba(30, 45, 80, 0.35);
+}
+.phone-screen {
+  width: 100%; height: 100%; border-radius: 27px; overflow: hidden;
+  background: #fff;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(120, 140, 175, 0.35); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ===== 全局 toast ===== */
+.toast-pill {
+  padding: 9px 18px; border-radius: 12px; max-width: 520px;
+  background: rgba(44, 58, 82, 0.92); color: #fff;
+  font-size: 13px; line-height: 1.5; box-shadow: 0 8px 24px rgba(30, 45, 80, 0.35);
+  animation: toast-in 0.25s var(--ease);
+}
+@keyframes toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+
+/* ===== 自定义标题栏（exe 无边框窗口） ===== */
+.titlebar-btn {
+  width: 46px; display: inline-flex; align-items: center; justify-content: center;
+  color: var(--ink-1); font-size: 13px; cursor: pointer; background: transparent;
+  border: none; transition: background 0.12s ease;
+}
+.titlebar-btn:hover { background: rgba(255, 255, 255, 0.4); }
+.titlebar-close:hover { background: var(--c-err); color: #fff; }
+
+/* ===== 中控台对话（console · 猫咪编辑部） ===== */
+.chat-avatar {
+  width: 30px; height: 30px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 13px; font-weight: 600;
+  box-shadow: 0 2px 8px rgba(90, 110, 160, 0.25);
+}
+.bubble {
+  max-width: 78%; padding: 10px 14px; border-radius: 16px;
+  font-size: 14px; line-height: 1.65; word-break: break-word; white-space: pre-wrap;
+}
+.bubble-user {
+  background: linear-gradient(135deg, #4a6fbf, #3b5ba5);
+  color: #fff; border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 14px rgba(59, 91, 165, 0.25);
+}
+.bubble-agent {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--pc, var(--c-wait));
+  border-bottom-left-radius: 4px;
+}
+.bubble.typing { display: inline-flex; align-items: center; }
+.typing-dot {
+  width: 6px; height: 6px; border-radius: 999px; background: var(--ink-3);
+  margin-right: 4px; animation: typing-bounce 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: none; opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ===== P3 拟人深化：ON AIR 灯 · 拍板盖章 · 天光四时档 ===== */
+.onair {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 12px; border-radius: 6px;
+  background: #c0392b; color: #fff;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  box-shadow: 0 0 14px rgba(192, 57, 43, 0.55);
+  animation: onair-pulse 2s infinite;
+}
+@keyframes onair-pulse {
+  50% { box-shadow: 0 0 5px rgba(192, 57, 43, 0.25); }
+}
+.stamp {
+  display: inline-block; margin-left: 8px; padding: 1px 8px;
+  border: 2px solid var(--c-err); color: var(--c-err); border-radius: 6px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: 1px;
+  transform: rotate(-6deg); opacity: 0.85;
+  animation: stamp-in 0.35s var(--ease);
+}
+@keyframes stamp-in {
+  from { transform: rotate(-6deg) scale(2.1); opacity: 0; }
+  to { transform: rotate(-6deg) scale(1); opacity: 0.85; }
+}
+
+/* 天光随时辰走：清晨→午后→黄昏→深夜（console 挂钟按小时挂 data-sky） */
+body[data-sky="morning"] {
+  background:
+    radial-gradient(1200px 500px at 85% -5%, rgba(255, 240, 210, 0.6), transparent 60%),
+    linear-gradient(165deg, #9db4e8 0%, #cdd9f2 50%, #f3e3c8 100%);
+}
+body[data-sky="afternoon"] {
+  background:
+    radial-gradient(1200px 500px at 85% -5%, rgba(255, 233, 201, 0.55), transparent 60%),
+    radial-gradient(900px 420px at -10% 110%, rgba(243, 217, 184, 0.5), transparent 55%),
+    linear-gradient(165deg, var(--sky-from) 0%, var(--sky-mid) 45%, var(--sky-dusk) 100%);
+}
+body[data-sky="evening"] {
+  background:
+    radial-gradient(1100px 480px at 85% -5%, rgba(255, 214, 170, 0.5), transparent 60%),
+    linear-gradient(165deg, #7a86c8 0%, #c3aed0 50%, #f3c9a8 100%);
+}
+body[data-sky="night"] {
+  background:
+    radial-gradient(1000px 460px at 85% -5%, rgba(240, 185, 92, 0.18), transparent 60%),
+    linear-gradient(165deg, #2c3a52 0%, #45486e 55%, #7a5f57 100%);
+}

@@ -1,0 +1,4 @@
+usage: cat_shop.py write [-h] --date DATE [--force-v2]
+                         [--v2-angle {时间切片,反例切入,物件线索,回信体,他人视角}]
+                         [--semantic-redline] [--slot SLOT] [--use-outline]
+cat_shop.py write: error: the following arguments are required: --date

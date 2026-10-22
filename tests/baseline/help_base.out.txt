@@ -1,0 +1,70 @@
+usage: cat_shop.py [-h]
+                   {setup,test-feishu,collect,score,notify,choose,feedback,feedback-dedup,analyze,write,outline,format,draft,status,sync,learn,new-batch,regenerate-batch,titles,all,full,redline,redline-semantic}
+                   ...
+
+创作工作台 · 内容自动化工作流（单文件版）
+
+positional arguments:
+  {setup,test-feishu,collect,score,notify,choose,feedback,feedback-dedup,analyze,write,outline,format,draft,status,sync,learn,new-batch,regenerate-batch,titles,all,full,redline,redline-semantic}
+    setup               交互式设 key + webhook（输入时不显示）
+    test-feishu         测飞书 webhook 联通
+    collect             Step 1 · 选题生成
+    score               Step 2 · 多维度评分
+    notify              Step 3 · 飞书推送 top 5
+    choose              Step 3.7 · 用户决策（写入 selections/{date}.json）
+    feedback            Step 3.5 · 收集用户评论
+    feedback-dedup      P0-6 · 清理 user_feedback.jsonl 重复评论（同 date+rank 保留最新）
+    analyze             Step 3.6 · LLM 分析评论 + 给反馈
+    write               Step 4 · 写稿
+    outline             大纲搭建（写稿前确认结构，可选）
+    format              Step 5 · HTML 排版
+    draft               Step 6 · 飞书草稿推送
+    status              查看工作流状态
+    sync                Step 4.5 · 同步文稿到飞书云文档
+    learn               Step 7 · 反馈学习
+    new-batch           生成新一批选题（不限次数，多批共存）
+    regenerate-batch    强制重新生成某批选题（--round 必填）
+    titles              P0-4 · 生成标题多方案（写稿后自动生成，可手动重跑）
+    all                 跑 1-3（采集+评分+推送）
+    full                跑 1-7 完整流程
+    redline             跑红线检查（短语匹配）
+    redline-semantic    跑红线检查（LLM 语义）
+
+options:
+  -h, --help            show this help message and exit
+
+创作工作台 · 内容自动化工作流（单文件版）
+=====================================
+
+完整 7 步流水线 + 红线检查 + 飞书推送 + 用户评论 + LLM 反馈分析。
+所有 prompt、红线规则、HTML 模板都内嵌在单文件里，无需外部 .md 文件。
+
+用法（建议在项目根目录跑）：
+  python cat_shop.py setup                    # 交互式设 key + webhook
+  python cat_shop.py collect --date 2026-08-18 [--force]  # Step 1
+  python cat_shop.py score --date 2026-08-18 [--runs 3 --force]  # Step 2
+  python cat_shop.py notify --date 2026-08-18   # Step 3（飞书推送 top 5）
+  python cat_shop.py choose --date 2026-08-18 --choice 1 [--note "..."]  # Step 3.7 · 用户决策
+  python cat_shop.py feedback --date 2026-08-18 # 收集评论
+  python cat_shop.py analyze --date 2026-08-18 [--apply-rubric]  # LLM 分析 + 反馈
+  python cat_shop.py write --date 2026-08-18 [--v2-angle 反例切入] [--semantic-redline]  # Step 4
+  python cat_shop.py sync --date 2026-08-18 [--force-sync]  # Step 4.5 · 同步飞书云文档
+  python cat_shop.py format --date 2026-08-18 [--semantic-redline] # Step 5
+  python cat_shop.py draft --date 2026-08-18    # Step 6
+  python cat_shop.py learn --date 2026-08-18    # Step 7（--mode weekly 学画像）
+  python cat_shop.py all --date 2026-08-18      # 跑 1-3
+  python cat_shop.py full --date 2026-08-18     # 跑 1-7
+  python cat_shop.py test-feishu                # 测飞书
+  python cat_shop.py redline --text "..."       # 跑红线（短语）
+  python cat_shop.py redline-semantic --file path  # 跑红线（LLM 语义）
+
+依赖：pip install requests jinja2 markdown python-dotenv
+环境变量（用 `setup` 子命令设置，自动存到 .env）：
+  LLM_API_KEY / LLM_API_BASE / LLM_MODEL
+  FEISHU_WEBHOOK_URL
+  FEISHU_DOC_FOLDER_TOKEN（云文档同步用，另需安装并授权 lark-cli）
+
+数据闭环（v3）：
+  feedback → analyze(rubric_revisions) → score(权重校准)
+  learn --mode weekly → preference_profile.json → score(权重)
+  history.jsonl → collect(选题去重) / write(偏好注入)

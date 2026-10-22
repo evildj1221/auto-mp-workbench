@@ -1,0 +1,40 @@
+{
+  "id": "muxue_xinjian",
+  "name": "暮雪信笺",
+  "version": "1",
+  "base": "tianguang_yunying",
+  "meta": {
+    "author": "builtin",
+    "description": "换肤能力最小验证：继承天光云影，只换色彩 token 与信件块节奏（雪夜蓝 × 雾凇蓝），组件结构完全复用",
+    "tags": ["内置", "冷色"]
+  },
+  "tokens": {
+    "colors": {
+      "title": "#2E3A52",
+      "accent": "#9FB4D6",
+      "frame": "#B9C3D6",
+      "surface": "#F3F6FB",
+      "page": "#FCFDFF",
+      "body": "#3C4759",
+      "letter_ink": "#57627A",
+      "muted": "#8C99B0",
+      "kicker": "#7288AC",
+      "card_border": "#D8E0EC",
+      "card": "#FAFCFF"
+    },
+    "letter_spacing": {
+      "kicker": "5px"
+    },
+    "spacing": {
+      "block_gap": "24px",
+      "letter_gap": "26px"
+    },
+    "radii": {
+      "letter": "4px"
+    },
+    "borders": {
+      "letter_left": "2px"
+    }
+  },
+  "component_defaults": {}
+}

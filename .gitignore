@@ -1,0 +1,62 @@
+# Python 缓存（可随时重建）
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 基线对比产物（每次 compare 重跑重新生成；*_base.* 基线文件已入库）
+tests/baseline/*_new.out.txt
+tests/baseline/*_new.err.txt
+
+# 运行日志（任务运行日志，可重建；报错日志另有「版本备份」兜底）
+logs/
+*.log
+
+# Agent 运行时状态库（checkpoint 可重建；trace/report 文本产物正常入库）
+data/agent_runs.db
+data/agent_runs.db-shm
+data/agent_runs.db-wal
+
+# 前端 TS 增量编译缓存（构建产物）
+frontend/*.tsbuildinfo
+
+# 程序自动备份文件（如 preference_profile.json.bak）
+data/**/*.bak
+
+# 测试沙箱残留（test_agent/test_autonomy 的 2099 沙箱日期产物，不入库）
+data/**/2099-*
+data/agent_runs/2099-*
+
+# 打包中间产物（正式 exe 在根目录，已纳入版本管理）
+dist/
+build/
+*.spec.bak
+
+# v5.1 onedir 打包产物（exe + _internal 放项目根；体量数千文件，不再入库。
+# 重建方式：pyinstaller workbench.spec --noconfirm --clean 后拷 dist/创作工作台/* 到根目录）
+/_internal/
+/创作工作台.exe
+
+# 回滚安全备份（「回滚到上一版本.bat」自动生成）
+版本备份/
+
+# 密钥文件：绝不入库（回滚脚本会自动备份到「版本备份」）
+.env
+
+# 前端构建产物与依赖（可重建：cd frontend && npm install && npm run build）
+frontend/node_modules/
+frontend/dist/
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 工具导出副本 / 工具记忆（可重建，正文文档在 docs/ 已入库）
+.trae-html-share-packages/
+.workbuddy/
+.tmp/
+
+# 用户数据目录永不入库（运行时生成）
+data/
+__pycache__/

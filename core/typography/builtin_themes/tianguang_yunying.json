@@ -1,0 +1,116 @@
+{
+  "id": "tianguang_yunying",
+  "name": "天光云影",
+  "version": "1",
+  "base": null,
+  "meta": {
+    "author": "builtin",
+    "description": "现行《排版视觉规范》原样打包：深夜蓝 × 暖金治愈系，默认主题，渲染结果与改造前逐字节一致",
+    "tags": ["默认", "品牌"]
+  },
+  "tokens": {
+    "colors": {
+      "title": "#1A2B4A",
+      "accent": "#E8B66E",
+      "frame": "#C8C5BD",
+      "surface": "#FAF7F2",
+      "page": "#FFFDF9",
+      "body": "#3E4757",
+      "letter_ink": "#5A6376",
+      "muted": "#9AA0AC",
+      "kicker": "#C9974B",
+      "card_border": "#E8DFC9",
+      "card": "#FFFCF6"
+    },
+    "font_sizes": {
+      "kicker": "12px",
+      "title": "20px",
+      "sub": "12px",
+      "body": "15px",
+      "quote": "15.5px",
+      "letter_p": "14px",
+      "letter_q": "14.5px",
+      "letter_sign": "13.5px",
+      "action_label": "12px",
+      "action_p": "14px",
+      "closing": "15px",
+      "stamp": "11px",
+      "follow": "12px",
+      "divider": "12px",
+      "h2": "17px",
+      "h3": "15px",
+      "card_title": "15px",
+      "timeline": "13.5px",
+      "footnote": "12px",
+      "sign": "13.5px",
+      "placeholder": "12px"
+    },
+    "letter_spacing": {
+      "kicker": "4px",
+      "title": "1px",
+      "sub": "2px",
+      "divider": "6px",
+      "body": "0.5px",
+      "action_label": "3px",
+      "stamp": "3px",
+      "follow": "1px"
+    },
+    "line_heights": {
+      "title": "1.6",
+      "body": "2"
+    },
+    "spacing": {
+      "kicker_bottom": "12px",
+      "title_margin": "0 6px 10px",
+      "sub_bottom": "6px",
+      "div_head_margin": "10px 0 30px",
+      "div_tail_margin": "0 0 24px",
+      "block_gap": "22px",
+      "letter_gap": "24px",
+      "letter_p_gap": "14px",
+      "letter_padding": "16px 18px",
+      "card_gap": "30px",
+      "card_padding": "16px 18px",
+      "action_label_gap": "8px",
+      "cover_gap": "30px",
+      "stamp_gap": "8px",
+      "stamp_padding": "4px 14px",
+      "h2_bottom": "26px",
+      "h3_bottom": "18px",
+      "emphasis_padding": "10px 14px",
+      "emphasis_gap": "22px",
+      "timeline_indent": "12px",
+      "timeline_gap": "6px",
+      "footnote_padding_top": "8px"
+    },
+    "radii": {
+      "letter": "6px",
+      "card": "8px",
+      "cover": "6px",
+      "stamp": "4px",
+      "emphasis": "6px",
+      "svgslot": "8px"
+    },
+    "borders": {
+      "letter_left": "3px",
+      "card": "1px",
+      "card_top": "3px",
+      "stamp": "1px",
+      "timeline_left": "2px",
+      "footnote_top": "1px",
+      "svgslot": "1px"
+    }
+  },
+  "component_defaults": {
+    "kicker": { "prefix": "你的公众号" },
+    "sub": { "text": "每晚 22:00 · 一封写给你的信" },
+    "divider_head": { "symbol": "✦ ✦ ✦" },
+    "divider_tail": { "symbol": "✦ ✦ ✦" },
+    "action": { "label_text": "今晚 · 试一试" },
+    "trio": { "lines": ["我是你的笔名。", "每晚 22:00，给你回一封信。", "明晚见。"] },
+    "stamp": { "text": "你的公众号" },
+    "follow": { "text": "关注我，每晚 22:00，收到一封只写给你的信。" },
+    "divider": { "preset": "stars" },
+    "imgtext": { "enabled": false }
+  }
+}
